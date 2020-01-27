@@ -7,7 +7,7 @@
 3) Установить зависимости:
    * pip install -r requirements.txt
 4) Создать postgres db и добавить учетные данные в settings.py:
-  DATABASES = {
+  '''python DATABASES = {
   'default': {
   'ENGINE': 'django.db.backends.postgresql_psycopg2',
   'NAME': 'worker_db',
@@ -17,6 +17,7 @@
   'PORT': '5432',
   }
   }
+  '''
 5) Необходимо создать миграции:
    * cd workersenjine
    * python manage.py makemigrations
