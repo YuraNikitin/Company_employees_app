@@ -6,7 +6,7 @@
    * source venv/bin/activate
 3) Установить зависимости:
    * pip install -r requirements.txt
-4) Создать postgres db и добавить учетные данные в settings.py
+4) Создать postgres db и добавить учетные данные в settings.py:
   DATABASES = {
   'default': {
   'ENGINE': 'django.db.backends.postgresql_psycopg2',
