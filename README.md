@@ -21,8 +21,7 @@
   ```
 5) Необходимо создать миграции:
    * cd workersenjine
-   * python manage.py makemigrations
-  python manage.py migrate
+   * python manage.py migrate
 6) Создать учетную запись администратора:
    * python manage.py createsuperuser
 7) Для запуска необходимо:
