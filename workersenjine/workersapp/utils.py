@@ -28,12 +28,14 @@ class OblectList():
         else:
             next_url = ''
         departments = Department.objects.all()
+        workers = Worker.objects.all().count()
         context = {
             'departments': departments,
             'page_object': page,
             'is_paginated': is_paginated,
             'prev_url': prev_url,
-            'next_url': next_url
+            'next_url': next_url,
+            'workers': workers,
         }
         return render(request, 'workersapp/index.html', context=context)
 

@@ -25,9 +25,11 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'worker_list_url' %}">Главная</a>
             </li>
+            {% if workers  >= 1 %}
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'alphabet_url' None %}">Алфавитный указатель</a>
             </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
