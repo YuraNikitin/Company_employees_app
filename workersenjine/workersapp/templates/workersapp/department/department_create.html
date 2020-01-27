@@ -1,0 +1,12 @@
+{% extends 'workersapp/base_template.html' %}
+
+{% block title %}
+    Department Create
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'department_create_url' %}" method="post" enctype="multipart/form-data">
+        {% include 'workersapp/includes/form_create_template.html' %}
+        <button type="submit" class="btn btn-primary">Create department</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script crossorigin="anonymous" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>
+        {% block title %}
+            Workers enjine
+        {% endblock %}
+    </title>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'worker_list_url' %}">Главная</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'alphabet_url' None %}">Алфавитный указатель</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-9">
+            {% block content %}
+
+            {% endblock %}
+
+            {% if is_paginated %}
+                <div class="container mt-5">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {% if not prev_url %} disabled {% endif %}">
+                                <a aria-disabled="true" class="page-link" href="{{ prev_url }}" tabindex="-1">Previous</a>
+                            </li>
+                            {% for n in page_object.paginator.page_range %}
+                                {% if page_object.number == n %}
+                                    <li aria-current="page" class="page-item active">
+                                        <a class="page-link" href="?page={{ n }}">{{ n }} <span class="sr-only">(current)</span></a>
+                                    </li>
+                                {% elif n > page_object.number|add:-3 and n < page_object.number|add:3 %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ n }}">{{ n }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            <li class="page-item {% if not next_url %} disabled {% endif %}">
+                                <a class="page-link" href="{{ next_url }}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            {% endif %}
+        </div>
+        {% block filter %}
+        {% endblock %}
+    </div>
+</div>
+
+
+{% if request.user.is_staff %}
+    <div class="admin-panel align-items-center">
+        <a href="/admin" class="btn btn-outline-info ">Admin</a>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                Create
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'worker_create_url' %}">Worker</a>
+                <a class="dropdown-item" href="{% url 'department_create_url' %}">Department</a>
+            </div>
+        </div>
+        {% block admin-panel %}
+        {% endblock %}
+    </div>
+{% endif %}
+</body>
+</html>

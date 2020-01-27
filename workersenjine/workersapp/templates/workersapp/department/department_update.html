@@ -1,0 +1,12 @@
+{% extends 'workersapp/base_template.html' %}
+
+{% block title %}
+    Department Update
+{% endblock %}
+
+{% block content %}
+    <form action="{{ department.get_update_url }}" method="post" enctype="multipart/form-data">
+        {% include 'workersapp/includes/form_create_template.html' %}
+        <button type="submit" class="btn btn-primary">Update worker</button>
+    </form>
+{% endblock %}

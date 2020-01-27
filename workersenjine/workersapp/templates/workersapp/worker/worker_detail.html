@@ -1,0 +1,33 @@
+{% extends 'workersapp/base_template.html' %}
+
+{% block title %}
+    Worker detail info
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5"> Подробная информация:</h1>
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ worker.surname }} {{worker.name}} {{worker.lastName}}</h5>
+            <p class="card-text">
+                Должность: {{ worker.position }}. Отдел: {{ worker.department }}.
+            </p>
+            <p class="card-text">
+                Email: {{ worker.email }}.
+            </p>
+            <p class="card-text">
+                Номер тел.: {{ worker.phone }}.
+            </p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Дата рождения: {{ worker.dateBirth }}</li>
+            <li class="list-group-item">Дата начала работы: {{ worker.startDate }}</li>
+            <li class="list-group-item">Дата окончания работы: {{ worker.endDate|default_if_none:"Действующий сотрудник" }}</li>
+        </ul>
+
+        <div class="card-body">
+            <a href="{% url 'worker_list_url' %}" class="card-link">Back</a>
+        </div>
+    </div>
+{% endblock %}

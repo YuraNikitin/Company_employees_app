@@ -1,0 +1,13 @@
+{% extends 'workersapp/base_template.html' %}
+
+{% block title %}
+    Department detail
+{% endblock %}
+
+{% block content %}
+    <h1>Workers works in "{{ department.title|title }}" departmernt:</h1>
+    {% for worker in department.workers.all %}
+        {% include 'workersapp/includes/worker_card_template.html' %}
+    {% endfor %}
+    <a href="{% url 'worker_list_url' %}" class="card-link">Back</a>
+{% endblock %}

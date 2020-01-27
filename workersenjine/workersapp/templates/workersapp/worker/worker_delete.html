@@ -1,0 +1,14 @@
+{% extends 'workersapp/base_template.html' %}
+
+{% block title %}
+    Delete worker  {{ worker.name|title }}
+{% endblock %}
+
+{% block content %}
+    <form action="{{ worker.get_delete_url }}" method="post">
+        {% csrf_token %}
+        <h3> Are you sure want to delete in list - <b> "{{ worker.surname|title }} {{ worker.name|title }}" </b>?</h3>
+        <a href="{{ worker.get_absolute_url }}">Cancel</a>
+        <button type="submit" class="btn btn-danger" name="button">Delete</button>
+    </form>
+{% endblock %}

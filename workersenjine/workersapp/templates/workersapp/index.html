@@ -1,0 +1,25 @@
+{% extends 'workersapp/base_template.html' %}
+
+{% block title %}
+    Workers list
+{% endblock %}
+
+{% block content %}
+    <h1> Список сотрудников:</h1>
+    {% for worker in page_object.object_list %}
+        {% include 'workersapp/includes/worker_card_template.html' %}
+    {% endfor %}
+{% endblock %}
+
+{% block filter %}
+    <div class="col-3">
+        <h1>Фильтрация:</h1>
+        <a href="{% url 'worker_filter_url' %}">Действующие сотрудники</a>
+        <h1>Отделы:</h1>
+        {% for department in departments %}
+            <div class="list-group">
+                <a href="{{ department.get_absolute_url }}">{{ department.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

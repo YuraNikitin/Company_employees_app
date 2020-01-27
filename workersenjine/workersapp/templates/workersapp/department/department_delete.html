@@ -1,0 +1,14 @@
+{% extends 'workersapp/base_template.html' %}
+
+{% block title %}
+    Delete department  {{ department.name|title }}
+{% endblock %}
+
+{% block content %}
+    <form action="{{ department.get_delete_url }}" method="post">
+        {% csrf_token %}
+        <h3> Are you sure want to delete this - <b> "{{ department.title|title }}" </b>- department?</h3>
+        <a href="{{ department.get_absolute_url }}">Cancel</a>
+        <button type="submit" class="btn btn-danger" name="button">Delete</button>
+    </form>
+{% endblock %}

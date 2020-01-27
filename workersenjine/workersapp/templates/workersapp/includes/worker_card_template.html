@@ -1,0 +1,16 @@
+<div class="card w-500">
+  <div class="card-body">
+      <h3 class="card-title">{{ worker.surname }} {{worker.name}} {{worker.lastName}}</h3>
+      <p class="card-text">
+          Должность: {{ worker.position }}.
+          Отдел: {{ worker.department }}.
+      </p>
+      <p class="card-text">
+          Email: {{ worker.email }}.
+      </p>
+      <p class="card-text">
+          Номер тел.: {{ worker.phone }}.
+      </p>
+      <a href="{{ worker.get_absolute_url }}" class="btn btn-primary">Подробнее!</a>
+  </div>
+</div>
