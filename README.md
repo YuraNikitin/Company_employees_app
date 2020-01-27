@@ -10,14 +10,14 @@
   ```python
   DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'worker_db',
-    'USER': 'postgres',
-    'PASSWORD': 'postgres',
-    'HOST': 'localhost',
-    'PORT': '5432',
-    }
-    }
+      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      'NAME': 'worker_db',
+      'USER': 'postgres',
+      'PASSWORD': 'postgres',
+      'HOST': 'localhost',
+      'PORT': '5432',
+      }
+   }
   ```
 5) Необходимо создать миграции:
    * cd workersenjine
